@@ -10,7 +10,7 @@
         60	2-STORY 1946 & NEWER
         70	2-STORY 1945 & OLDER
         75	2-1/2 STORY ALL AGES
-        80	SPLIT OR MULTI-LEVEL
+        80	SPLIT OfgR MULTI-LEVEL
         85	SPLIT FOYER
         90	DUPLEX - ALL STYLES AND AGES
        120	1-STORY PUD (Planned Unit Development) - 1946 & NEWER
@@ -378,7 +378,7 @@
 
 **Bedroom: Bedrooms above grade (does NOT include basement bedrooms)**
 
-**Kitchen: Kitchens above grade**
+**KitchenAbvGr: Kitchens above grade**
 
 **KitchenQual: Kitchen quality**
 
