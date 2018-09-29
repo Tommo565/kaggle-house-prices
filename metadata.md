@@ -376,7 +376,7 @@
 
 **HalfBath: Half baths above grade**
 
-**Bedroom: Bedrooms above grade (does NOT include basement bedrooms)**
+**BedroomAbvGr: Bedrooms above grade (does NOT include basement bedrooms)**
 
 **KitchenAbvGr: Kitchens above grade**
 
