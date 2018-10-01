@@ -7,8 +7,9 @@ Repo to hold my code for the [Kaggle House Prices: Advanced Regression Technique
 ### General Notes & Ideas
 
 * Housing price crash from 2008 onwards. Is this significant? Maybe variables to indicate the stage of the crisis based upon month / year?
-* Create a variable to indicate number of floors (including basement)?
-* Dimensionality Reduction on Basement variables?
+* Vvariable to indicate number of floors (including basement)?
+* Dimensionality Reduction on Basement, Garage variables?
+* Has Basement / Garage variables?
 
 ### Correlations
 
