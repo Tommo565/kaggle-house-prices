@@ -12,6 +12,6 @@ def min_max_scaler(df, scale_list):
     for col in scale_list:
         col_array = df[col].as_matrix()
         arr_scaled = scaler.fit_transform(col_array.reshape(-1, 1))
-        df['{}_scaled'.format(col)] = arr_scaled
+        df[col] = arr_scaled
 
     return df

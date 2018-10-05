@@ -2,6 +2,30 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+''' Cat matrix - compare categorical variables '''
+''' Explore numeric feature '''
+
+
+def correlation_heatmap(df, drop_vars):
+    '''
+    Takes a dataframe and a list of variable names.
+    Produces a heatmap, excluding the variable names listed in the
+    dropvars list.
+    Returns a seaborn heatmap.
+    '''
+
+    df_corr = df.corr().round(1).drop('Id', axis=1)
+    plt.figure(figsize=(30, 15))
+    ax = sns.heatmap(
+        df_corr,
+        cmap='coolwarm',
+        linewidths=1,
+        annot=True,
+        annot_kws={
+            'size': 15
+        }
+    )
+
 
 def explore_feature(df, feature, target):
     '''
@@ -29,23 +53,55 @@ def explore_feature(df, feature, target):
         feature, 'mean', 'median', 'min', 'max', 'std', 'skew', 'cnt'
     ]
     tb = tb.round(2)
-
     cols = tb.columns.tolist()
-    cols.remove(target)
+    cols.remove(feature)
 
     for col in cols:
-        tb['{}_rank'.format(col)] = tb[col].rank()
+        tb['{}_rank'.format(col)] = tb[col].rank(ascending=False)
 
-    plt.figure(figsize=(24, 12))
-    g = sns.stripplot(
+    violin_chart, violin_ax = plt.subplots(figsize=(32, 16))
+    sns.violinplot(
         x=feature,
         y=target,
         data=df,
         size=3,
         alpha=1,
         palette='deep',
-        jitter=True
+        ax=violin_ax
     )
-    plt.title(feature)
+
+    strip_chart, strip_ax = plt.subplots(figsize=(32, 16))
+    sns.stripplot(
+        x=feature,
+        y=target,
+        data=df,
+        size=3,
+        alpha=1,
+        palette='deep',
+        jitter=True,
+        ax=strip_ax
+    )
 
     return tb
+
+
+def explore_feature_hue(df, feature, target, hue):
+    '''
+    Takes a dataframe, feature and a target.
+    Gets basic statistics & ranks for a (numeric or categorical) variable.
+    PLots a seaborn StripPlot of the variables.
+    Returns a dataframe of the results.
+    '''
+
+    strip_chart, strip_ax = plt.subplots(figsize=(32, 16))
+    sns.stripplot(
+        x=feature,
+        y=target,
+        hue=hue,
+        data=df,
+        size=3,
+        alpha=1,
+        palette='Reds',
+        jitter=True,
+        ax=strip_ax
+    )
