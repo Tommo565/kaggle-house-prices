@@ -2,7 +2,7 @@ import pandas as pd
 from processing import pre_processing, feature_engineering
 from parameters import (
     infile, explore_out, model_out, none_list, na_list, quality_codes,
-    quality_vars, features, scale_list, one_hot_list, skew_vars
+    quality_vars, features, scale_list, one_hot_list, skew_list
 )
 
 # Execution
