@@ -25,7 +25,7 @@ def feature_engineering(
         labels=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     )
 
-    # Create new variables + remove unneeded ones
+    # Create new variables
     df['HasPorch'] = df.apply(has_porch, axis=1)
     df['Remodelled'] = df.apply(is_remodelled, axis=1)
     df['PropertyAge'] = df.apply(property_age, axis=1)

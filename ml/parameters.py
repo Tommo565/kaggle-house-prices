@@ -1,3 +1,6 @@
+train_in = '../data/input_data/train.csv'
+test_in = '../data/input_data/test.csv'
+
 infile = '../data/transformed_data/train_preprocessed.csv'
 explore_out = '../data/transformed_data/explore.csv'
 model_out = '../data/transformed_data/model.csv'
@@ -28,17 +31,16 @@ features = [
     'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea',
     'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr',
     'Neighborhood', 'MSZoning', 'BldgType', 'Remodelled', 'IsNew', 'IsPartial',
-    'SalePrice'
+    'SalePrice', 'LotArea', 'Functional'
 ]
 
 scale_list = [
     'OverallQual', 'PropertyAge', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
-    'GrLivArea', 'TotalArea', 'FullBath', 'HalfBath', 'TotalBath',
-    'TotRmsAbvGrd', 'BedroomAbvGr'
+    'GrLivArea', 'TotalArea', 'LotArea'
 ]
 
 one_hot_list = [
-    'Neighborhood', 'MSZoning', 'BldgType'
+    'Neighborhood', 'MSZoning', 'BldgType', 'Functional'
 ]
 
 skew_list = [
