@@ -40,3 +40,9 @@ scale_list = [
 one_hot_list = [
     'Neighborhood', 'MSZoning', 'BldgType'
 ]
+
+skew_vars = [
+    'OverallQual', 'PropertyAge', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
+    'GrLivArea', 'TotalArea', 'FullBath', 'HalfBath', 'TotalBath',
+    'TotRmsAbvGrd', 'BedroomAbvGr', 'SalePrice'
+]

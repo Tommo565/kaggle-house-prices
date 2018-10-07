@@ -1,14 +1,13 @@
 import warnings
 import pandas as pd
-from numpy import log1p
-from helper_functions import one_hot_encoder, min_max_scaler
+from helper_functions import one_hot_encoder, min_max_scaler, log_transform
 from .transformation_functions import *
 warnings.filterwarnings('ignore')
 
 
 def feature_engineering(
     df, quality_vars, quality_codes, explore_out, model_out, features,
-    scale_list, one_hot_list
+    scale_list, one_hot_list, skew_list
 ):
     '''Performs the feature engineering on the dataset'''
 
@@ -58,7 +57,7 @@ def feature_engineering(
     df = one_hot_encoder(df, one_hot_list)
 
     # Log Transforms
-    df['SalePriceLog'] = log1p(df['SalePrice'])
+    log_transform(df, skew_list)
 
     # Export a dataset for modelling
     df.to_csv(model_out, index=False)

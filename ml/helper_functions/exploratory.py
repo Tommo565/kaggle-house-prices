@@ -14,7 +14,7 @@ def correlation_heatmap(df, drop_vars):
     Returns a seaborn heatmap.
     '''
 
-    df_corr = df.corr().round(1).drop('Id', axis=1)
+    df_corr = df.corr().round(1).drop(drop_vars, axis=1)
     plt.figure(figsize=(30, 15))
     ax = sns.heatmap(
         df_corr,
