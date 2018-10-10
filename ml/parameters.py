@@ -1,9 +1,9 @@
 train_in = '../data/input_data/train.csv'
 test_in = '../data/input_data/test.csv'
 
-infile = '../data/transformed_data/train_preprocessed.csv'
 explore_out = '../data/transformed_data/explore.csv'
-model_out = '../data/transformed_data/model.csv'
+train_model_out = '../data/transformed_data/model_train.csv'
+test_model_out = '../data/transformed_data/model_test.csv'
 
 none_list = [
     'Alley', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
@@ -12,6 +12,11 @@ none_list = [
     'MasVnrType'
 ]
 na_list = ['MasVnrArea']
+
+med_list = [
+    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'BsmtFullBath',
+    'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 'YearBuilt'
+]
 
 quality_codes = {
     'Ex': 5,
@@ -28,11 +33,13 @@ quality_vars = [
 
 features = [
     'Id', 'OverallQual', 'PropertyAge',
-    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea',
+    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea', 'LotArea',
     'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr',
     'Neighborhood', 'MSZoning', 'BldgType', 'Remodelled', 'IsNew', 'IsPartial',
-    'SalePrice', 'LotArea', 'Functional'
+    'Functional'
 ]
+
+target = 'SalePrice'
 
 scale_list = [
     'OverallQual', 'PropertyAge', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
@@ -43,8 +50,8 @@ one_hot_list = [
     'Neighborhood', 'MSZoning', 'BldgType', 'Functional'
 ]
 
-skew_list = [
+log_trf_list = [
     'OverallQual', 'PropertyAge', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
     'GrLivArea', 'TotalArea', 'FullBath', 'HalfBath', 'TotalBath',
-    'TotRmsAbvGrd', 'BedroomAbvGr', 'SalePrice'
+    'TotRmsAbvGrd', 'BedroomAbvGr'
 ]

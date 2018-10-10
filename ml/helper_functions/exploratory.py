@@ -35,14 +35,16 @@ def explore_feature(df, feature, target):
     Returns a dataframe of the results.
     '''
 
+    tb_vars = [feature, target]
+
     # Stats Table
-    tb_mean = df[[feature, target]].groupby(feature).mean()
-    tb_med = df[[feature, target]].groupby(feature).median()
-    tb_min = df[[feature, target]].groupby(feature).min()
-    tb_max = df[[feature, target]].groupby(feature).max()
-    tb_std = df[[feature, target]].groupby(feature).std()
-    tb_skew = df[[feature, target]].groupby(feature).skew()
-    tb_cnt = df[[feature, target]].groupby(feature).count()
+    tb_mean = df[tb_vars].groupby(feature).mean()
+    tb_med = df[tb_vars].groupby(feature).median()
+    tb_min = df[tb_vars].groupby(feature).min()
+    tb_max = df[tb_vars].groupby(feature).max()
+    tb_std = df[tb_vars].groupby(feature).std()
+    tb_skew = df[tb_vars].groupby(feature).skew()
+    tb_cnt = df[tb_vars].groupby(feature).count()
 
     tb = pd.concat(
         [tb_mean, tb_med, tb_min, tb_max, tb_std, tb_skew, tb_cnt],

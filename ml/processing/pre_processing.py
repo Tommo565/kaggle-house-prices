@@ -10,6 +10,6 @@ def pre_processing(df, none_list, na_list):
         df[var].fillna('None', inplace=True)
 
     for var in na_list:
-        df.fillna('MasVnrArea', inplace=True)
+        df[var].fillna(0, inplace=True)
 
     return df

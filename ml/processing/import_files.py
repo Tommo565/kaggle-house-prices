@@ -10,6 +10,4 @@ def import_files(train_in, test_in):
     df_test = pd.read_csv(test_in)
     df_test['Test'] = 1
 
-    df_all = pd.concat([df_train, df_test])
-
-    return df_train, df_test, df_all
+    return df_train, df_test
