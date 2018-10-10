@@ -6,15 +6,22 @@ import seaborn as sns
 ''' Explore numeric feature '''
 
 
-def correlation_heatmap(df, drop_vars):
+def correlation_heatmap(df, drop_vars=[], keep_vars=[]):
     '''
     Takes a dataframe and a list of variable names.
     Produces a heatmap, excluding the variable names listed in the
     dropvars list.
     Returns a seaborn heatmap.
+
+    Improve this docstring 
     '''
 
-    df_corr = df.corr().round(1).drop(drop_vars, axis=1)
+    if drop_vars != []:
+        df_corr = df.corr().round(1).drop(drop_vars, axis=1)
+
+    elif keep_vars != []:
+        df_corr = df[keep_vars].corr().round(1)
+
     plt.figure(figsize=(30, 15))
     ax = sns.heatmap(
         df_corr,
@@ -22,18 +29,20 @@ def correlation_heatmap(df, drop_vars):
         linewidths=1,
         annot=True,
         annot_kws={
-            'size': 15
+            'size': 12
         }
     )
 
 
-def explore_feature(df, feature, target):
+def explore_feature(df, feature, target, font_scale=1):
     '''
     Takes a dataframe, feature and a target.
     Gets basic statistics & ranks for a (numeric or categorical) variable.
     PLots a seaborn StripPlot of the variables.
     Returns a dataframe of the results.
     '''
+
+    sns.set(font_scale=font_scale)
 
     tb_vars = [feature, target]
 
@@ -87,13 +96,15 @@ def explore_feature(df, feature, target):
     return tb
 
 
-def explore_feature_hue(df, feature, target, hue):
+def explore_feature_hue(df, feature, target, hue, font_scale=1):
     '''
     Takes a dataframe, feature and a target.
     Gets basic statistics & ranks for a (numeric or categorical) variable.
     PLots a seaborn StripPlot of the variables.
     Returns a dataframe of the results.
     '''
+
+    sns.set(font_scale=font_scale)
 
     strip_chart, strip_ax = plt.subplots(figsize=(32, 16))
     sns.stripplot(
