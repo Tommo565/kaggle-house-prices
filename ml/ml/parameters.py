@@ -54,7 +54,7 @@ features = [
 
     # Cat Variables
      'Neighborhood', 'MSZoning', 'BldgType', 'Functional', 'MSSubClass', 'Condition1', 
-     'LotConfig', 'Exterior1st', 'MasVnrType', 'SaleType', 'SaleCondition',
+     'LotConfig', 'MasVnrType', 'SaleType', 'SaleCondition',
 
     # Binary Variables
     'IsRemodelled', 'IsNew'
@@ -71,7 +71,7 @@ scale_list = [
 
 one_hot_list = [
      'Neighborhood', 'MSZoning', 'BldgType', 'Functional', 'MSSubClass', 'Condition1', 
-     'LotConfig', 'Exterior1st', 'MasVnrType', 'SaleType', 'SaleCondition'
+     'LotConfig', 'MasVnrType', 'SaleType', 'SaleCondition'
 ]
 
 log_trf_list = [
@@ -80,3 +80,5 @@ log_trf_list = [
     'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr', 'KitchenAbvGr',
     'SimpleOverallQual', 'SimpleOverallCond'
 ]
+
+
