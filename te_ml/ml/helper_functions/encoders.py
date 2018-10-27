@@ -15,3 +15,6 @@ def one_hot_encoder(df, one_hot_list):
         df = pd.concat([df, df_1h], axis=1)
 
     return df
+
+
+# Write a Label encoder
