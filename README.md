@@ -25,3 +25,6 @@ Correlated variables
     `YearRemodAdd` Year Remodelled **0.5** (note - this is the same as the construction date if no remodelling or additions)
     `MasVnrArea` Masonry veneer area in square feet **0.5**
     
+   ### Useful Links
+   
+[Exploration, Feature Engineering & Stacking Kernel](https://www.kaggle.com/agodwinp/stacking-house-prices-walkthrough-to-top-5#)
