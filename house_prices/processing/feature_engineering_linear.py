@@ -1,16 +1,16 @@
 import warnings
 import pandas as pd
-from ml.helper_functions import one_hot_encoder, min_max_scaler, log_transform
+from helper_functions import one_hot_encoder, min_max_scaler, log_transform
 from .transformation_functions import *
 warnings.filterwarnings('ignore')
 
 
-def feature_engineering(
-    df, data, target, quality_vars, quality_codes, simple_codes, med_list, 
-    explore_out, train_model_out, test_model_out, features, scale_list, 
-    one_hot_list, log_trf_list
+def feature_engineering_linear(
+    df, data, target, quality_vars, quality_codes, simple_codes, med_list,
+    explore_out_linear, train_model_out_linear, test_model_out_linear,
+    features, scale_list, one_hot_list, log_trf_list
 ):
-    '''Performs the feature engineering on the dataset'''
+    '''Performs the feature engineering on the dataset for linear modelling'''
 
     # Convert numeric to categorical
     df['MSSubClass'] = df['MSSubClass'].astype(str)
@@ -19,6 +19,7 @@ def feature_engineering(
     for item in quality_vars:
         df[item].replace(quality_codes, inplace=True)
 
+    # Fills na with median values
     for item in med_list:
         df[item].fillna(df[item].median(), inplace=True)
 
@@ -41,7 +42,7 @@ def feature_engineering(
     df['TotalArea'] = (
         df['TotalBsmtSF'] + df['1stFlrSF'] + df['2ndFlrSF'] + df['GrLivArea']
     )
-    df['CoreArea'] = df['GrLivArea'] + df['TotalBsmtSF'] 
+    df['CoreArea'] = df['GrLivArea'] + df['TotalBsmtSF']
 
     # Simple Variables
     df['SimpleOverallQual'] = df['OverallQual'].replace(simple_codes)
@@ -57,8 +58,8 @@ def feature_engineering(
         )
 
         # Export a dataset for exploration
-        df.to_csv(explore_out, index=False)
-        print('Exploration dataset created: {}'.format(explore_out))
+        df.to_csv(explore_out_linear, index=False)
+        print('Exploration dataset created: {}'.format(explore_out_linear))
 
         # Remove outliers
         df = df[((df['TotalArea'] <= 10000))]
@@ -82,11 +83,11 @@ def feature_engineering(
 
     if data == 'Train':
         log_transform(df, [target])
-        df.to_csv(train_model_out, index=False)
-        print('Train model dataset created: {}'.format(train_model_out))
+        df.to_csv(train_model_out_linear, index=False)
+        print('Train model dataset created: {}'.format(train_model_out_linear))
 
     if data == 'Test':
-        df.to_csv(test_model_out, index=False)
-        print('Test model dataset created: {}'.format(test_model_out))
+        df.to_csv(test_model_out_linear, index=False)
+        print('Test model dataset created: {}'.format(test_model_out_linear))
 
     return df

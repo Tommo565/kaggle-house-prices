@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 
 def one_hot_encoder(df, one_hot_list):
@@ -17,4 +18,16 @@ def one_hot_encoder(df, one_hot_list):
     return df
 
 
-# Write a Label encoder
+def label_encoder(df, label_list):
+    '''
+    Takes a dataframe and a list of (categorical) variables as an input.
+    Label encodes a list of categorical variables, and returns a new
+    dataframe
+    '''
+
+    for col in label_list:
+        Enc = LabelEncoder()
+        Enc.fit(df[col])
+        df['{}_label'.format(col)] = Enc.transform(df[col])
+
+    return df

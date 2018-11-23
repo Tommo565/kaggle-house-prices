@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-    name='ml',
+    name='house_prices',
     version='0.1',
-    description='My personal Python package to support my ML workflow',
+    description='Package to support work on predicting house prices',
     url='',
     author='Tom Ewing',
     author_email='ewingt1979@gmail.com',
     license='MIT',
-    packages=['ml'],
+    packages=['house_prices'],
     zip_safe=False
 )
