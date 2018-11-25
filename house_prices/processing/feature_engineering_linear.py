@@ -1,6 +1,9 @@
 import warnings
 import pandas as pd
-from helper_functions import one_hot_encoder, min_max_scaler, log_transform
+from helper_functions import (
+    one_hot_encoder, min_max_scaler, log_transform, to_ordinal_med,
+    get_ordinal_values
+)
 from .transformation_functions import *
 warnings.filterwarnings('ignore')
 
@@ -8,7 +11,8 @@ warnings.filterwarnings('ignore')
 def feature_engineering_linear(
     df, data, target, quality_vars, quality_codes, simple_codes, med_list,
     explore_out_linear, train_model_out_linear, test_model_out_linear,
-    features, scale_list, one_hot_list, log_trf_list
+    features, scale_list, one_hot_list, to_ordinal_list, log_trf_list,
+    story_codes, exterior_codes, foundation_codes
 ):
     '''Performs the feature engineering on the dataset for linear modelling'''
 
@@ -23,6 +27,18 @@ def feature_engineering_linear(
     for item in med_list:
         df[item].fillna(df[item].median(), inplace=True)
 
+    # Code the HouseStyle variable
+    df['Stories'] = df['HouseStyle'].replace(story_codes)
+
+    # Code the Exterior1st variable
+    df['Exterior1st'].replace(exterior_codes, inplace=True)
+
+    # Code the Foundation variable
+    df['Foundation'].replace(foundation_codes, inplace=True)
+
+    # Tweak the GarageCars variable
+    df['GarageCars'] = df.apply(garage_cars, axis=1)
+
     # Create new variables
     df['HasPorch'] = df.apply(has_porch, axis=1)
     df['IsRemodelled'] = df.apply(is_remodelled, axis=1)
@@ -35,6 +51,7 @@ def feature_engineering_linear(
     df['YrSold'] = df['YrSold'] - 2005
     df['IsNew'] = df.apply(is_new, axis=1)
     df['IsPartial'] = df.apply(is_partial, axis=1)
+    df['IsCulDeSac'] = df.apply(is_cul_de_sac, axis=1)
 
     # Combination Variables
     df['OverallGrade'] = df['OverallQual'] * df['OverallCond']
@@ -49,6 +66,13 @@ def feature_engineering_linear(
     df['SimpleOverallCond'] = df['OverallCond'].replace(simple_codes)
 
     if data == 'Train':
+
+        # Convert Categorical to Ordinal
+        for feature in to_ordinal_list:
+            to_ordinal_med(df, feature, target)
+            df['{}_ordinal'.format(feature)] = (
+                df['{}'.format(feature)].replace(get_ordinal_values(feature))
+            )
 
         # Binning the target into bands for exploration
         df['SalePriceBand'] = pd.qcut(
@@ -70,6 +94,12 @@ def feature_engineering_linear(
         df = pd.concat([df_f, df_t], axis=1)
 
     if data == 'Test':
+
+        for feature in to_ordinal_list:
+            df['{}_ordinal'.format(feature)] = (
+                df['{}'.format(feature)].replace(get_ordinal_values(feature))
+            )
+
         df = df[features]
 
     # Scaling

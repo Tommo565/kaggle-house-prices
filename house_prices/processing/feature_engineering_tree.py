@@ -23,6 +23,9 @@ def feature_engineering_tree(
     for item in med_list:
         df[item].fillna(df[item].median(), inplace=True)
 
+    # Code the HouseStyle variable
+    df['Stories'] = df['HouseStyle'].replace(story_codes)
+
     # Create new variables
     df['HasPorch'] = df.apply(has_porch, axis=1)
     df['IsRemodelled'] = df.apply(is_remodelled, axis=1)
@@ -35,6 +38,7 @@ def feature_engineering_tree(
     df['YrSold'] = df['YrSold'] - 2005
     df['IsNew'] = df.apply(is_new, axis=1)
     df['IsPartial'] = df.apply(is_partial, axis=1)
+    df['IsCulDeSac'] = df.apply(is_cul_de_sac, axis=1)
 
     # Combination Variables
     df['OverallGrade'] = df['OverallQual'] * df['OverallCond']

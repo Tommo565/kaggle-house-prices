@@ -60,3 +60,26 @@ def has_deck(row):
     else:
         return 0
 
+
+def is_cul_de_sac(row):
+    ''''''
+    if row['LotConfig'] == 'CulDSac':
+        return 1
+    else:
+        return 0
+
+
+def garage_cars(row):
+
+    if row['GarageCars'] > 3:
+        return 3
+    else:
+        return row['GarageCars']
+
+
+
+
+
+
+
+

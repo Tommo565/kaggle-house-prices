@@ -5,7 +5,7 @@ from processing.feature_engineering_linear import *
 from processing.feature_engineering_tree import *
 from parameters.master import *
 
-data = 'Train'
+data = 'Test'
 
 # Import
 df_train, df_test = import_files(train_in, test_in)
@@ -16,21 +16,22 @@ df_test = pre_processing(df_test, none_list, na_list)
 if data == 'Train':
 
     # Linear
-    # print('1. Processing Linear Train Data')
-    # df_train_linear = feature_engineering_linear(
-    #     df_train, data, target, quality_vars, quality_codes, simple_codes,
-    #     med_list, explore_out_linear, train_model_out_linear,
-    #     test_model_out_linear, linear_features, scale_list, one_hot_list,
-    #     log_trf_list
-    # )
+    print('1. Processing Linear Train Data')
+    df_train_linear = feature_engineering_linear(
+        df_train, data, target, quality_vars, quality_codes, simple_codes,
+        med_list, explore_out_linear, train_model_out_linear,
+        test_model_out_linear, linear_features, scale_list, one_hot_list,
+        to_ordinal_list, log_trf_list, story_codes, exterior_codes,
+        foundation_codes
+    )
 
     # Tree
-    print('2. Processing Tree Train Data')
-    df_train_tree = feature_engineering_tree(
-        df_train, data, target, quality_vars, quality_codes, simple_codes,
-        med_list, label_list, explore_out_tree, train_model_out_tree,
-        test_model_out_tree, tree_features
-    )
+    # print('2. Processing Tree Train Data')
+    # df_train_tree = feature_engineering_tree(
+    #     df_train, data, target, quality_vars, quality_codes, simple_codes,
+    #     med_list, label_list, explore_out_tree, train_model_out_tree,
+    #     test_model_out_tree, tree_features
+    # )
 
 # Test data
 if data == 'Test':
@@ -41,7 +42,8 @@ if data == 'Test':
         df_train, data, target, quality_vars, quality_codes, simple_codes,
         med_list, explore_out_linear, train_model_out_linear,
         test_model_out_linear, linear_features, scale_list, one_hot_list,
-        log_trf_list
+        to_ordinal_list, log_trf_list, story_codes, exterior_codes,
+        foundation_codes
     )
 
     print('2. Processing Test Data')
@@ -50,7 +52,8 @@ if data == 'Test':
         df_test, data, target, quality_vars, quality_codes, simple_codes,
         med_list, explore_out_linear, train_model_out_linear,
         test_model_out_linear, linear_features, scale_list, one_hot_list,
-        log_trf_list
+        to_ordinal_list, log_trf_list, story_codes, exterior_codes,
+        foundation_codes
     )
 
 

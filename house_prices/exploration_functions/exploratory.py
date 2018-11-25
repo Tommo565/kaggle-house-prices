@@ -13,7 +13,7 @@ def correlation_heatmap(df, drop_vars=[], keep_vars=[]):
     dropvars list.
     Returns a seaborn heatmap.
 
-    Improve this docstring 
+    Improve this docstring
     '''
 
     if drop_vars != []:
@@ -34,7 +34,7 @@ def correlation_heatmap(df, drop_vars=[], keep_vars=[]):
     )
 
 
-def explore_feature(df, feature, target, font_scale=1):
+def explore_feature(df, feature, target, font_scale=1, palette='bright'):
     '''
     Takes a dataframe, feature and a target.
     Gets basic statistics & ranks for a (numeric or categorical) variable.
@@ -77,7 +77,7 @@ def explore_feature(df, feature, target, font_scale=1):
         data=df,
         size=3,
         alpha=1,
-        palette='deep',
+        palette=palette,
         ax=violin_ax
     )
 
@@ -88,7 +88,7 @@ def explore_feature(df, feature, target, font_scale=1):
         data=df,
         size=3,
         alpha=1,
-        palette='deep',
+        palette=palette,
         jitter=True,
         ax=strip_ax
     )
@@ -96,7 +96,9 @@ def explore_feature(df, feature, target, font_scale=1):
     return tb
 
 
-def explore_feature_hue(df, feature, target, hue, font_scale=1):
+def explore_feature_hue(
+        df, feature1, target, feature2, font_scale=1, palette='Reds'
+):
     '''
     Takes a dataframe, feature and a target.
     Gets basic statistics & ranks for a (numeric or categorical) variable.
@@ -108,13 +110,13 @@ def explore_feature_hue(df, feature, target, hue, font_scale=1):
 
     strip_chart, strip_ax = plt.subplots(figsize=(32, 16))
     sns.stripplot(
-        x=feature,
+        x=feature1,
         y=target,
-        hue=hue,
+        hue=feature2,
         data=df,
         size=3,
         alpha=1,
-        palette='Reds',
+        palette=palette,
         jitter=True,
         ax=strip_ax
     )
