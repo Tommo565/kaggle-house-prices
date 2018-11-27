@@ -9,16 +9,27 @@ test_model_out_linear = '../data/transformed_data/model_test_linear.csv'
 test_model_out_tree = '../data/transformed_data/model_test_tree.csv'
 
 none_list = [
-    'Alley', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
-    'BsmtQual', 'Fence', 'FireplaceQu', 'GarageCond', 'GarageFinish',
-    'GarageQual', 'GarageType', 'GarageYrBlt', 'MiscFeature', 'PoolQC',
-    'MasVnrType'
+    'MasVnrType',
+    'MSZoning',
+    'Functional',
+    'SaleType',
 ]
-na_list = ['MasVnrArea']
+
+na_list = [
+    'MasVnrArea',
+]
 
 med_list = [
-    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'BsmtFullBath',
-    'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 'YearBuilt',
+    'TotalBsmtSF',
+    '1stFlrSF',
+    '2ndFlrSF',
+    'GrLivArea',
+    'BsmtFullBath',
+    'BsmtHalfBath',
+    'FullBath',
+    'HalfBath',
+    'BedroomAbvGr',
+    'YearBuilt',
     'GarageCars'
 ]
 
@@ -30,23 +41,10 @@ quality_codes = {
     'Po': 1
 }
 
-simple_codes = {
-    1: 1,
-    2: 1,
-    3: 1,
-    4: 2,
-    5: 2,
-    6: 2,
-    7: 3,
-    8: 3,
-    9: 3,
-    10: 4
-}
-
 story_codes = {
     '1Story': '1',
     '1.5Fin': '1',
-    '1.5Unf ': '1',
+    '1.5Unf': '1',
     '2Story': '2',
     '2.5Fin': '2',
     '2.5Unf': '2',
@@ -84,97 +82,133 @@ foundation_codes = {
 }
 
 quality_vars = [
-    'ExterQual', 'ExterCond', 'BsmtQual', 'BsmtQual',
-    'BsmtCond', 'KitchenQual', 'HeatingQC', 'FireplaceQu'
+    'ExterQual', 'ExterCond',
 ]
 
-# Linear (and maybe Tree)
-linear_features = [
-    'Id',
-    # Num Variables
-    'OverallQual', 'PropertyAge', 'OverallGrade', 'ExterGrade', 'CoreArea',
-    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea', 'LotArea',
-    'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr',
-    'KitchenAbvGr', 'SimpleOverallQual', 'SimpleOverallCond',
-    'Neighborhood_ordinal', 'MSSubClass_ordinal', 'GarageCars',
-
-    # Cat Variables
-    'Neighborhood', 'MSZoning', 'BldgType', 'Functional', 'MSSubClass',
-    'Condition1', 'LotConfig', 'MasVnrType', 'SaleType', 'SaleCondition',
-    'Stories', 'Foundation',
-
-    # Binary Variables
-    'IsRemodelled', 'IsNew', 'IsCulDeSac', 'IsPartial'
-]
-
-tree_features = [
-    'Id',
-    # Num Variables
-    'OverallQual', 'PropertyAge', 'OverallGrade', 'ExterGrade', 'CoreArea',
-    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea', 'LotArea',
-    'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr',
-    'KitchenAbvGr', 'SimpleOverallQual', 'SimpleOverallCond',
-
-    # Cat Variables
-    'Neighborhood_label', 'MSZoning_label', 'BldgType_label',
-    'Functional_label', 'MSSubClass_label', 'Condition1_label',
-    'LotConfig_label', 'MasVnrType_label', 'SaleType_label',
-    'SaleCondition_label',
-
-    # Binary Variables
-    'IsRemodelled', 'IsNew'
-
-]
 
 target = 'SalePrice'
 
-# Linear
+features = [
+    'Id',
+    # Target
+    'SalePrice',
+    # Num Variables
+    'OverallQual',
+    'ExterQual',
+    'ExterCond',
+    'OverallCond',
+    'TotalBsmtSF',
+    '1stFlrSF',
+    '2ndFlrSF',
+    'GrLivArea',
+    'LotArea',
+    'BsmtFullBath',
+    'BsmtHalfBath',
+    'YearBuilt',
+    'FullBath',
+    'HalfBath',
+    'TotRmsAbvGrd',
+    'BedroomAbvGr',
+    'KitchenAbvGr',
+    'HeatingQC',
+    'GarageCars',
+    'OpenPorchSF',
+    'YearRemodAdd',
+    'YrSold',
+    'PoolArea',
+    'WoodDeckSF',
+    # Cat Variables
+    'Neighborhood',
+    'MSZoning',
+    'BldgType',
+    'Functional',
+    'MSSubClass',
+    'Condition1',
+    'LotConfig',
+    'MasVnrType',
+    'SaleType',
+    'SaleCondition',
+    'Foundation',
+    'HouseStyle',
+]
+
 scale_list = [
-    'OverallQual', 
-    'PropertyAge', 
-    'OverallGrade', 
-    'ExterGrade', 
+    'OverallQual',
+    'OverallCond',
+    'ExterQual',
+    'ExterCond',
+    'PropertyAge',
+    'OverallGrade',
+    'ExterGrade',
     'CoreArea',
-    'TotalBsmtSF', 
-    '1stFlrSF', 
-    '2ndFlrSF', 
-    'GrLivArea', 
-    'TotalArea', 
+    'TotalBsmtSF',
+    '1stFlrSF',
+    '2ndFlrSF',
+    'GrLivArea',
+    'TotalArea',
     'LotArea',
     'FullBath',
-    'HalfBath', 
-    'TotalBath', 
-    'TotRmsAbvGrd', 
+    'HalfBath',
+    'TotalBath',
+    'TotRmsAbvGrd',
     'BedroomAbvGr',
-    'KitchenAbvGr', 
-    'SimpleOverallQual', 
-    'SimpleOverallCond',
-    'Neighborhood_ordinal', 
-    'MSSubClass_ordinal', 
+    'KitchenAbvGr',
+    'Neighborhood_ordinal',
+    'MSSubClass_ordinal',
+    'MasVnrType_ordinal',
+    'Foundation_ordinal',
     'GarageCars',
+    'YearBuilt',
+    'YrSold',
 ]
 
 # Linear
 one_hot_list = [
-    'SaleCondition', 'Stories', 'Foundation'
+    'SaleCondition',
+    'Stories'
 ]
 
 # Linear
 to_ordinal_list = [
-    'Neighborhood', 'MSSubClass', 'MasVnrType', 'Foundation'
+    'Neighborhood',
+    'MSSubClass',
+    'MasVnrType',
+    'Foundation'
 ]
 
 # Linear
 log_trf_list = [
-    'OverallQual', 'PropertyAge', 'OverallGrade', 'ExterGrade', 'CoreArea',
-    'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'TotalArea', 'LotArea',
-    'FullBath', 'HalfBath', 'TotalBath', 'TotRmsAbvGrd', 'BedroomAbvGr',
-    'KitchenAbvGr', 'SimpleOverallQual', 'SimpleOverallCond',
-    'Neighborhood_ordinal', 'MSSubClass_ordinal', 'GarageCars'
+    'OverallQual',
+    'ExterQual',
+    'PropertyAge',
+    'OverallGrade',
+    'ExterGrade',
+    'CoreArea',
+    'TotalBsmtSF',
+    '1stFlrSF',
+    '2ndFlrSF',
+    'GrLivArea',
+    'TotalArea',
+    'LotArea',
+    'FullBath',
+    'HalfBath',
+    'TotalBath',
+    'TotRmsAbvGrd',
+    'BedroomAbvGr',
+    'KitchenAbvGr'
 ]
 
 # Tree
 label_list = [
-     'Neighborhood', 'MSZoning', 'BldgType', 'Functional', 'MSSubClass',
-     'Condition1', 'LotConfig', 'MasVnrType', 'SaleType', 'SaleCondition'
+     'Neighborhood',
+     'MSZoning',
+     'BldgType',
+     'Functional',
+     'MSSubClass',
+     'Condition1',
+     'LotConfig',
+     'MasVnrType',
+     'SaleType',
+     'SaleCondition',
+     'Foundation'
 ]
