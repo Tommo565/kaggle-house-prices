@@ -17,9 +17,8 @@ none_list = [
 
 na_list = [
     'MasVnrArea',
-]
-
-med_list = [
+    'KitchenQual',
+    'GarageArea',
     'TotalBsmtSF',
     '1stFlrSF',
     '2ndFlrSF',
@@ -30,7 +29,11 @@ med_list = [
     'HalfBath',
     'BedroomAbvGr',
     'YearBuilt',
-    'GarageCars'
+    'GarageCars',
+]
+
+med_list = [
+
 ]
 
 quality_codes = {
@@ -81,8 +84,31 @@ foundation_codes = {
     'Wood': 'Other'
 }
 
+sale_condition_codes = {
+    'Normal': 'Normal',
+    'Abnorml': 'Abnorml',
+    'Partial': 'Partial',
+    'AdjLand': 'Abnorml',
+    'Alloca': 'Abnorml',
+    'Family': 'Abnorml'
+}
+
+sale_type_codes = {
+    'WD': 'Deed',
+    'CWD': 'Cash',
+    'VWD': 'Deed',
+    'New': 'New',
+    'COD': 'CO',
+    'Con': 'CO',
+    'ConLw': 'CO',
+    'ConLI': 'CO',
+    'ConLD': 'CO',
+    'Oth': 'CO',
+    'None': 'Deed'
+}
+
 quality_vars = [
-    'ExterQual', 'ExterCond',
+    'ExterQual', 'ExterCond', 'KitchenQual', 'HeatingQC'
 ]
 
 
@@ -117,6 +143,10 @@ features = [
     'YrSold',
     'PoolArea',
     'WoodDeckSF',
+    'MasVnrArea',
+    'KitchenQual',
+    'Fireplaces',
+    'GarageArea',
     # Cat Variables
     'Neighborhood',
     'MSZoning',
@@ -157,14 +187,21 @@ scale_list = [
     'MSSubClass_ordinal',
     'MasVnrType_ordinal',
     'Foundation_ordinal',
+    'SaleType_ordinal',
+    'SaleCondition_ordinal',
     'GarageCars',
     'YearBuilt',
     'YrSold',
+    'MasVnrArea',
+    'KitchenQual',
+    'Fireplaces',
+    'GarageArea',
+    'YearRemodAdd',
+    'HeatingQC'
 ]
 
 # Linear
 one_hot_list = [
-    'SaleCondition',
     'Stories'
 ]
 
@@ -173,29 +210,28 @@ to_ordinal_list = [
     'Neighborhood',
     'MSSubClass',
     'MasVnrType',
-    'Foundation'
+    'Foundation',
+    'SaleType',
+    'SaleCondition'
 ]
 
 # Linear
 log_trf_list = [
-    'OverallQual',
-    'ExterQual',
-    'PropertyAge',
-    'OverallGrade',
-    'ExterGrade',
-    'CoreArea',
     'TotalBsmtSF',
     '1stFlrSF',
     '2ndFlrSF',
     'GrLivArea',
-    'TotalArea',
     'LotArea',
-    'FullBath',
-    'HalfBath',
-    'TotalBath',
-    'TotRmsAbvGrd',
-    'BedroomAbvGr',
-    'KitchenAbvGr'
+    'OpenPorchSF',
+    'PoolArea',
+    'WoodDeckSF',
+    'MasVnrArea',
+    'GarageArea',
+    'MasVnrArea',
+    'CoreArea',
+    'TotalArea',
+    'OverallQual',
+    'ExterQual'
 ]
 
 # Tree

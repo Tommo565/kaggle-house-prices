@@ -18,7 +18,6 @@ def feature_engineering_linear(
     '''
 
     if data == 'Train':
-
         # Convert Categorical to Ordinal
         for feature in to_ordinal_list:
             to_ordinal_med(df, feature, target)
@@ -27,7 +26,6 @@ def feature_engineering_linear(
             )
 
     if data == 'Test':
-
         # Apply Categorical to Ordinal Conversion
         for feature in to_ordinal_list:
             df['{}_ordinal'.format(feature)] = (
@@ -75,7 +73,7 @@ def feature_engineering_tree(
 def feature_engineering(
     df, data, features, target,
     quality_vars, quality_codes, med_list, story_codes, exterior_codes,
-    foundation_codes,
+    foundation_codes, sale_condition_codes, sale_type_codes,
     scale_list, one_hot_list, log_trf_list, to_ordinal_list, label_list,
     train_model_out_linear, test_model_out_linear, train_model_out_tree,
     test_model_out_tree
@@ -98,8 +96,12 @@ def feature_engineering(
     for item in med_list:
         df[item].fillna(df[item].median(), inplace=True)
 
-    # Code the HouseStyle variable
+    # Cardinality Reduction
     df['Stories'] = df['HouseStyle'].replace(story_codes)
+    df['MasVnrType'].replace(exterior_codes, inplace=True)
+    df['Foundation'].replace(foundation_codes, inplace=True)
+    df['SaleCondition'].replace(sale_condition_codes, inplace=True)
+    df['SaleType'].replace(sale_type_codes, inplace=True)
 
     # Create new variables
     df['HasPorch'] = df.apply(has_porch, axis=1)
@@ -111,9 +113,9 @@ def feature_engineering(
     df['HasPool'] = df.apply(has_pool, axis=1)
     df['HasDeck'] = df.apply(has_deck, axis=1)
     df['YrSold'] = df['YrSold'] - 2005
-    df['IsNew'] = df.apply(is_new, axis=1)
-    df['IsPartial'] = df.apply(is_partial, axis=1)
-    df['IsCulDeSac'] = df.apply(is_cul_de_sac, axis=1)
+    # df['IsNew'] = df.apply(is_new, axis=1)
+    # df['IsPartial'] = df.apply(is_partial, axis=1)
+    # df['IsCulDeSac'] = df.apply(is_cul_de_sac, axis=1)
 
     # Combination Variables
     df['OverallGrade'] = df['OverallQual'] * df['OverallCond']

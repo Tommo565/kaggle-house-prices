@@ -75,11 +75,3 @@ def garage_cars(row):
         return 3
     else:
         return row['GarageCars']
-
-
-
-
-
-
-
-

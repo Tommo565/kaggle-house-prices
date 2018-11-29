@@ -1,8 +1,6 @@
 {
-    "Slab": 1,
+    "Other": 1,
     "BrkTil": 2,
-    "Stone": 3,
-    "CBlock": 4,
-    "Wood": 5,
-    "PConc": 6
+    "CBlock": 3,
+    "PConc": 4
 }
