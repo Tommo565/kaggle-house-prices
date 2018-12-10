@@ -1,42 +1,30 @@
 import pandas as pd
-from processing.import_files import *
+from parameters.master import *
+from helper_functions import build_ordinal, get_ordinal
 from processing.pre_processing import *
 from processing.feature_engineering import feature_engineering
-from parameters.master import *
+
 
 # Import
-df_train, df_test = import_files(train_in, test_in)
+df_train = pd.read_csv(train_in)
+df_train['Train'] = 1
+df_test = pd.read_csv(test_in)
+df_test['Test'] = 1
 
-# Pre Processing
-df_train = pre_processing(df_train, none_list, na_list)
-df_test = pre_processing(df_test, none_list, na_list)
+# Concat the datasets & export
+df = pd.concat([df_train, df_test])
+df.to_csv(train_test_raw_out, index=False)
+
+# Pre-processing
+df = pre_processing(
+    df, drop_vars, none_vars, na_vars, mode_vars, med_vars, to_string_vars
+)
 
 # Feature Engineering
-
-# Train data
-data = 'Train'
-print('Processing Train Data')
-feature_engineering(
-    df_train, data, features, target,
-    quality_vars, quality_codes, med_list, story_codes, exterior_codes,
-    foundation_codes, sale_condition_codes, sale_type_codes,
-    scale_list, one_hot_list, log_trf_list, to_ordinal_list, label_list,
-    train_model_out_linear, test_model_out_linear, train_model_out_tree,
-    test_model_out_tree
+df = feature_engineering(
+    df, target, quality_vars, quality_codes, med_vars, get_ordinal,
+    ordinal_vars, num_exclude_vars, one_hot_vars,
+    train_model_out, test_model_out, all_model_out
 )
-
-# Test data
-data = 'Test'
-df_test['SalePrice'] = 0
-print('Processing Test Data')
-feature_engineering(
-    df_test, data, features, target,
-    quality_vars, quality_codes, med_list, story_codes, exterior_codes,
-    foundation_codes, sale_condition_codes, sale_type_codes,
-    scale_list, one_hot_list, log_trf_list, to_ordinal_list, label_list,
-    train_model_out_linear, test_model_out_linear, train_model_out_tree,
-    test_model_out_tree
-)
-
 
 print('Execution Complete. Have a nice Day =)')

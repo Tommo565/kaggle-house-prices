@@ -6,7 +6,10 @@ import seaborn as sns
 ''' Explore numeric feature '''
 
 
-def correlation_heatmap(df, method='pearson', drop_vars=[], keep_vars=[]):
+def correlation_heatmap(
+    df, method='pearson', drop_vars=[], keep_vars=[], annot=True,
+    figsize=(30, 15)
+):
     '''
     Takes a dataframe and a list of variable names.
     Produces a heatmap, excluding the variable names listed in the
@@ -25,12 +28,12 @@ def correlation_heatmap(df, method='pearson', drop_vars=[], keep_vars=[]):
     else:
         df_corr = df.corr(method=method).round(1)
 
-    plt.figure(figsize=(30, 15))
+    plt.figure(figsize=figsize)
     ax = sns.heatmap(
         df_corr,
         cmap='coolwarm',
         linewidths=1,
-        annot=True,
+        annot=annot,
         annot_kws={
             'size': 12
         }
