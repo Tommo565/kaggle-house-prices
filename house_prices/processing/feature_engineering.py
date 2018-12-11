@@ -39,7 +39,7 @@ def feature_engineering(
     df = unskew(df, num_exclude_vars)
 
     # Scale
-    df = min_max_scaler(df, num_exclude_vars)
+    # df = min_max_scaler(df, num_exclude_vars)
 
     # Log Transform Target
     df[target] = np.log1p(df[target])

@@ -167,7 +167,7 @@ one_hot_vars = [
     'MSZoning',
     'MasVnrType',
     'MiscFeature',
-    'Neighborhood',
+    # 'Neighborhood',
     'PavedDrive',
     'PoolQC',
     'RoofMatl',
