@@ -11,7 +11,7 @@ def one_hot_encoder(df, one_hot_vars):
 
     for col in one_hot_vars:
         df_1h = pd.get_dummies(df[col])
-        df_1h.columns = ['{}_{}'.format(col, x) for x in df_1h.columns]
+        df_1h.columns = ['1h_{}_{}'.format(col, x) for x in df_1h.columns]
         df = pd.concat([df, df_1h], axis=1)
 
     return df
@@ -27,6 +27,7 @@ def label_encoder(df, label_vars):
     for col in label_vars:
         Enc = LabelEncoder()
         Enc.fit(df[col])
-        df[col] = Enc.transform(df[col])
+        df['Lbl_{}'.format(col)] = Enc.transform(df[col])
+        df = df.drop([col], axis=1)
 
     return df

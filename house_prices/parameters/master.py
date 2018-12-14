@@ -167,7 +167,7 @@ one_hot_vars = [
     'MSZoning',
     'MasVnrType',
     'MiscFeature',
-    # 'Neighborhood',
+    'Neighborhood',
     'PavedDrive',
     'PoolQC',
     'RoofMatl',
@@ -178,6 +178,90 @@ one_hot_vars = [
     'YrSold',
 ]
 
+label_vars = [
+    'Alley',
+    'BldgType',
+    'BsmtCond',
+    'BsmtExposure',
+    'BsmtFinType1',
+    'BsmtFinType2',
+    'BsmtQual',
+    'CentralAir',
+    'Condition1',
+    'Condition2',
+    'Electrical',
+    'ExterCond',
+    'ExterQual',
+    'FireplaceQu',
+    'GarageCond',
+    'GarageQual',
+    'Exterior1st',
+    'Exterior2nd',
+    'Fence',
+    'Foundation',
+    'Functional',
+    'GarageFinish',
+    'GarageType',
+    'Heating',
+    'HeatingQC',
+    'HouseStyle',
+    'KitchenQual',
+    'LandContour',
+    'LandSlope',
+    'LotConfig',
+    'LotShape',
+    'MoSold',
+    'MSSubClass',
+    'MSZoning',
+    'MasVnrType',
+    'MiscFeature',
+    'Neighborhood',
+    'PavedDrive',
+    'PoolQC',
+    'RoofMatl',
+    'RoofStyle',
+    'SaleCondition',
+    'SaleType',
+    'Street',
+    'YrSold',
+]
+
+num_vars = [
+    '1stFlrSF',
+    '2ndFlrSF',
+    '3SsnPorch',
+    'BsmtFullBath',
+    'BsmtHalfBath',
+    'BedroomAbvGr',
+    'BsmtFinSF1',
+    'BsmtFinSF2',
+    'BsmtUnfSF',
+    'EnclosedPorch',
+    'Fireplaces',
+    'FullBath',
+    'GarageCars',
+    'GarageArea',
+    'GarageYrBlt',
+    'HalfBath',
+    'GrLivArea',
+    'KitchenAbvGr',
+    'LotArea',
+    'LotFrontage',
+    'LowQualFinSF',
+    'MasVnrArea',
+    'MiscVal',
+    'OpenPorchSF',
+    'OverallCond',
+    'OverallQual',
+    'TotRmsAbvGrd',
+    'PoolArea',
+    'ScreenPorch',
+    'TotalBsmtSF',
+    'WoodDeckSF',
+    'YearBuilt',
+    'YearRemodAdd',
+]
+
 num_exclude_vars = [
     'Train',
     'Test',
@@ -185,14 +269,11 @@ num_exclude_vars = [
     target
 ]
 
-poly_trf_list = []
-
-# Linear
-to_ordinal_list = [
-    'Neighborhood',
-    'MSSubClass',
-    'MasVnrType',
-    'Foundation',
-    'SaleType',
-    'SaleCondition'
+poly_trf_list = [
 ]
+
+pca_vars = [{
+    'name': 'pca_area',
+    'vars': ['GrLivArea', 'CoreArea', 'TotalArea'],
+    'n_components': 1,
+}]

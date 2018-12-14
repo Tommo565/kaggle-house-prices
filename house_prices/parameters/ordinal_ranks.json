@@ -73,8 +73,8 @@
             "RRAn": 4,
             "Norm": 5,
             "RRAe": 6,
-            "PosN": 7,
-            "PosA": 8
+            "PosA": 7,
+            "PosN": 8
         }
     },
     {
@@ -328,21 +328,20 @@
     {
         "PoolQC": {
             "None": 1,
-            "Gd": 2,
-            "Fa": 3,
+            "Fa": 2,
+            "Gd": 3,
             "Ex": 4
         }
     },
     {
         "RoofMatl": {
             "Roll": 1,
-            "ClyTile": 2,
-            "CompShg": 3,
-            "Tar&Grv": 4,
-            "Metal": 5,
-            "Membran": 6,
-            "WdShake": 7,
-            "WdShngl": 8
+            "CompShg": 2,
+            "Tar&Grv": 3,
+            "Metal": 4,
+            "Membran": 5,
+            "WdShake": 6,
+            "WdShngl": 7
         }
     },
     {
